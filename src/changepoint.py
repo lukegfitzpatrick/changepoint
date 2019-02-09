@@ -14,6 +14,7 @@ class cp2:
         self.dcol=dcol
 
         self.y, self.d = self._format_data(data, ycol=self.ycol, dcol=self.dcol)
+        self.data = pd.DataFrame({'y':self.y} , index = pd.DatetimeIndex(self.d))
 
     def _format_data(self, data, ycol, dcol):
 
@@ -36,6 +37,8 @@ class cp2:
                 data = data.sort_values(by=dcol)
                 return data[ycol].values, pd.to_datetime(data[dcol]).values
 
+
+
     def _make_range(self, starts, ends):
         return [range(s,e) for s, e in zip(starts, ends)]
 
@@ -49,10 +52,10 @@ class cp2:
             A = np.median(values[i-delta:i])
             B = np.median(values[i:i+delta])
 
-            qstat = ((n*m)/(n+m)) * (2*(A*B)**2)
+            q = ((n*m)/(n+m)) * (2*(A*B)**2)
 
-            if qstat>qmax:
-                qmax = qstat
+            if q>qmax:
+                qmax = q
                 location = i
 
         return qmax, dates[location]
@@ -82,7 +85,6 @@ class cp2:
                     print('range too small: deleting {} to {}'.format(self.d[fday], self.d[lday]))
                     print
                     test_index = np.delete(test_index, mr)
-                    #dates = np.delete(dates, mr)
                     starts.remove(mr[0])
                     ends.remove(mr[-1]+1)
 
