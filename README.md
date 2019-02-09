@@ -16,3 +16,5 @@ The original paper:
 To do:
   1) re-parameterize the time index so from 0 to 1 for the bin search
   2) figure out why it sucks when tested on the daily fed funds rate
+  3) document
+  4) add usage example
