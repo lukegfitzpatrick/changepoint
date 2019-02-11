@@ -52,7 +52,7 @@ class cp2:
             A = np.median(values[i-delta:i])
             B = np.median(values[i:i+delta])
 
-            q = ((n*m)/(n+m)) * (2*(A*B)**2)
+            q = ((n*m)/(n+m)) * (2*(A-B)**2)
 
             if q>qmax:
                 qmax = q
