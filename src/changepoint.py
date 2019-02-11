@@ -42,9 +42,10 @@ class cp2:
     def _make_range(self, starts, ends):
         return [range(s,e) for s, e in zip(starts, ends)]
 
-    def _get_max_qstat(self, values, dates, delta=50):
+    def _get_max_qstat(self, values, dates):
         qmax = 0
         location = 0
+        delta = self.delta
         for i in range(delta, len(values) - delta):
             n = len(values[:i])
             m = len(values[i:])
